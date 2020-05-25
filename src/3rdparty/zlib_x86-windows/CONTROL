@@ -1,0 +1,5 @@
+Package: zlib
+Version: 1.2.11-5
+Architecture: x86-windows
+Multi-Arch: same
+Description: A compression library

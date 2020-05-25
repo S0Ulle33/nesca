@@ -1,4 +1,0 @@
-admin
-root
-ftp
-anonymous

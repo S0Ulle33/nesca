@@ -2,9 +2,7 @@
 *.swo
 *.swp
 debugData.txt
-*.png
 adns_dll.dll
-changelog
 *.obj
 *.res
 *.log
@@ -12,8 +10,6 @@ changelog
 *.lastbuildstate
 *.pdb
 GeneratedFiles/*
-imp.txt
-imp2.txt
 *.dll
 logs/*
 *.vcxproj.*
@@ -29,7 +25,6 @@ result_files/*
 
 tags.txt
 lisca.cpp
-main - копия.cpp
 result_files-*
 *.BACKUP.*
 *.LOCAL.*
@@ -42,4 +37,5 @@ moc_*
 *.user
 Makefile
 tmp/*
-qrc_nesca_3.cpp
+qrc_nesca.cpp
+build-nesca*

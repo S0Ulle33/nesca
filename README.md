@@ -1,8 +1,8 @@
 Nesca
-----
+=====
 Сканер сети. Легендарный. Твой.
 
-![Nesca](examples/old_nesca.png)
+![Nesca](images/old_nesca.png)
 
 ### История возникновения
 
@@ -11,6 +11,11 @@ Nesca
 ### Бинарники
 
 [Билд win32 старой версии 24D87-801](https://mega.nz/#!yZV3UDpY!6D5k-Dd1amF0i_rzIhFM-WU7cdN3pxR2mwsYiIqedtU), пароль - 24D87-801
+
+[Последние релизы](https://github.com/S0Ulle33/nesca/releases)
+
+### Аудит безопасности
+Пользователем [enemy-submarine](https://github.com/enemy-submarine) был проведет [частичный аудит](https://github.com/enemy-submarine/nesca_audit), который показывает пару уязвимостей (PoC в комплекте) и состояние кодовой базы проекта в целом.
 
 ### Самостоятельная сборка
 
@@ -29,7 +34,7 @@ sudo apt-get install qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia
 Сборка:
 
 ```
-git clone https://github.com/netstalking-core/nesca.git
+git clone https://github.com/S0Ulle33/nesca.git
 qmake
 make
 ```

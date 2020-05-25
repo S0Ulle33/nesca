@@ -1,0 +1,12 @@
+Package: curl
+Version: 7.65.0-1
+Depends: zlib
+Architecture: x86-windows
+Multi-Arch: same
+Description: A library for transferring data with URLs
+
+Package: curl
+Feature: non-http
+Architecture: x86-windows
+Multi-Arch: same
+Description: Enables protocols beyond HTTP/HTTPS/HTTP2
