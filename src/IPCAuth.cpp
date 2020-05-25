@@ -28,7 +28,7 @@ std::string urlEncode(const string &value) {
 	return escaped.str();
 }
 
-lopaStr IPC::IPCBrute(const char *ip, int port, char *SPEC, const std::string *cookie)
+lopaStr IPC::IPCBrute(const char *ip, int port, const char *SPEC, const std::string *cookie)
 {
     lopaStr lps = {"UNKNOWN", "", ""};
     int result = 0;
@@ -327,7 +327,7 @@ Content-Length: %d\r\n\r\n\
     return lps;
 }
 
-lopaStr IPC::IPCLobby(const char *ip, int port, char *SPEC, const std::string *cookie) {
+lopaStr IPC::IPCLobby(const char *ip, int port, const char *SPEC, const std::string *cookie) {
     if(gMaxBrutingThreads > 0) {
         while(BrutingThrds >= gMaxBrutingThreads) Sleep(1000);
 

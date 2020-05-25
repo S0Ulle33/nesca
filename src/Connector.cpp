@@ -53,7 +53,7 @@ size_t nWriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
 }
 
 int pConnect(const char* ip, const int port, std::string *buffer,
-	const char *postData,
+    const char* postData,
 	const std::vector<std::string> *customHeaders,
 	const std::string *lpString,
 	bool digestMode)
@@ -91,9 +91,9 @@ int pConnect(const char* ip, const int port, std::string *buffer,
 		curl_easy_setopt(curl, CURLOPT_TIMEOUT, gTimeOut + 3);
 		curl_easy_setopt(curl, CURLOPT_COOKIEFILE, "");
 
-		if (postData != NULL) curl_easy_setopt(curl, CURLOPT_POSTFIELDS, postData);
+        if (postData != nullptr) curl_easy_setopt(curl, CURLOPT_POSTFIELDS, postData);
 
-		if (customHeaders != NULL) {
+        if (customHeaders != nullptr) {
 			struct curl_slist *chunk = NULL;
 			for (auto &ch : *customHeaders) chunk = curl_slist_append(chunk, ch.c_str());
 			curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
@@ -252,12 +252,12 @@ void cutoutComments(std::string *buffer) {
 }
 
 int Connector::nConnect(const char* ip, const int port, std::string *buffer,
-                        const char *postData,
+                        const char* postData,
                         const std::vector<std::string> *customHeaders,
                         const std::string *lpString,
 						bool digestMode,
 						bool isRTSP, bool isDigest){
-	int res = 0;
+    int res;
 	
 	if (!isRTSP) {
 		res = pConnect(ip, port, buffer, postData, customHeaders, lpString, digestMode);

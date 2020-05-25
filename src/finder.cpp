@@ -129,104 +129,6 @@ std::string getCodePage(const char *str)
     } else {
         return "NULL";
     }
-    /*
-	char cdpg[32] = {0};
-	char *ptr1 = strstri(str, "charset=");
-
-    if (ptr1 != nullptr) {
-		char *temp3 = _findFirst((char *)(ptr1 + 8), " \"'\n\r");
-        if (temp3 != nullptr) {
-			int ln = (int)(temp3 - ptr1 - 8);
-			if (ln > 16) return "WTF?";
-			strncpy(cdpg, (char *)(ptr1 + 8), (ln > 32) ? 32 : ln);
-			if (strstri(cdpg, "%s") != NULL) return "UTF-8";
-			return cdpg;
-		}
-        else {
-			stt->doEmitionRedFoundData("[GetCodePage] [" + QString(temp3).mid(0, 16) + "]");
-			return "NULL";
-		};
-	}
-
-	ptr1 = strstri(str, "<meta ");
-    if(ptr1 != nullptr) {
-        char *ptr2 = strstri(ptr1 + 6, "charset=");
-        if(ptr2 != nullptr) {
-            char *temp4 = _findFirst((char *)(ptr2 + 6), " \"'>\n\r");
-            if(temp4 != nullptr) {
-                int ln = (int)(temp4 - ptr2 - 8);
-				if(ln > 16) return "WTF?";
-                strncpy(cdpg, (char *)(ptr2 + 8), (ln > 32) ? 32 : ln );
-                if(strstri(cdpg, "%s") != nullptr) return "UTF-8";
-				return cdpg;
-			}
-            else {
-                stt->doEmitionRedFoundData("[GetCodePage] [" + QString(ptr2).mid(0, 16) + "]");
-                return "NULL";
-			};
-        }
-
-        ptr2 = strstri(ptr1 + 6, "charset = ");
-        if(ptr2 != NULL)
-        {
-            char *temp4 = _findFirst((char *)(ptr2 + 10), " \"'>\n\r");
-			if(temp4 != NULL)
-			{
-                int ln = (int)(temp4 - ptr2 - 10);
-				if(ln > 16) return "WTF?";
-                strncpy(cdpg, (char *)(ptr2 + 10), (ln > 32) ? 32 : ln );
-				if(strstri(cdpg, "%s") != NULL) return "UTF-8";
-				return cdpg;
-			}
-			else
-			{
-                stt->doEmitionRedFoundData("[GetCodePage] [" + QString(ptr2).mid(0, 16) + "]");
-                return "NULL";
-			};
-        }
-
-        ptr2 = strstri(ptr1 + 6, "charset =");
-        if(ptr2 != NULL)
-        {
-            char *temp4 = _findFirst((char *)(ptr2 + 9), " \"'>\n\r");
-			if(temp4 != NULL)
-			{
-                int ln = (int)(temp4 - ptr2 - 9);
-				if(ln > 16) return "WTF?";
-                strncpy(cdpg, (char *)(ptr2 + 9), (ln > 32) ? 32 : ln );
-				if(strstri(cdpg, "%s") != NULL) return "UTF-8";
-				return cdpg;
-			}
-			else
-			{
-                stt->doEmitionRedFoundData("[GetCodePage] [" + QString(ptr2).mid(0, 16) + "]");
-                return "NULL";
-			};
-		}
-		else
-		{
-			if(strstri(str, "charset=") != NULL)
-			{
-				char *temp2 = strstri(str, "charset=");
-                char *temp3 = _findFirst((char *)(temp2 + 8), " \"'>\n\r");
-				if(temp3 != NULL)
-				{
-                    int ln = (int)(temp3 - temp2 - 8);
-					if(ln > 16) return "WTF?";
-                    strncpy(cdpg, (char *)(temp2 + 8), (ln > 32) ? 32 : ln );
-					if(strstri(cdpg, "%s") != NULL) return "UTF-8";
-					return cdpg;
-				}
-				else
-				{
-					stt->doEmitionRedFoundData("[GetCodePage] [" + QString(temp3).mid(0, 16) + "]");
-                    return "NULL";
-				}
-			}
-			else return "NULL";
-		};	
-	}
-    else return "NULL";*/
 }
 
 bool isNegative(const std::string *buff, const char *ip, int port, const char *cp)
@@ -867,7 +769,7 @@ void _specFillerRSTP(const char *ip, int port, const char *finalstr, const char 
 	fputsf(log, flag);
 }
 
-void _specWEBIPCAMBrute(const char *ip, int port, char *finalstr, int flag, char *comment, char *cp, int size, char *SPEC, std::string *cookie)
+void _specWEBIPCAMBrute(const char *ip, int port, const char *finalstr, int flag, const char *comment, char *cp, int size, const char *SPEC, std::string *cookie)
 {
 	IPC ipc;
     lopaStr lps = ipc.IPCLobby(ip, port, SPEC, cookie);
