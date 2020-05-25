@@ -20,19 +20,42 @@
 
 ### Самостоятельная сборка
 
-Для компиляции необходимы `libssh`, `openssl` и `Qt`. Под Windows компилировать через MinGW.
+#### Windows
 
-Установка необходимого под Ubuntu:
+1. Качаем последнюю версию [qt-opensource-windows-x86](http://download.qt.io/official_releases/qt/)
+2. Устанавливаем, оставляя галочки на:
+
+   _MinGW 32-bit_  
+   _Sources_  
+   _QT Creator_
+
+3. Добавляем в PATH следующие папки:
+
+   `C:\Qt\Qt5.14.2\5.14.2\mingw73_32\bin`  
+   `C:\Qt\Qt5.14.2\Tools\mingw730_32\bin`
+
+4. `git clone https://github.com/S0Ulle33/nesca.git`
+5. Запускаем _QT Creator_ и открываем скачанный репозиторий, выбрав `nesca.pro`
+6. Выбираем _MinGW_ и нажимаем _Configure Project_
+7. В _QT Creator_, в левом нижнем углу, вместо _Debug_ выбираем _Release_
+8. Нажимаем кнопку _Build_ (молоточек)
+9. Когда сборка завершится, в папке с репозиторием будет новая папка `build-nesca-Desktop...`; переходим туда и копируем `nesca.exe` из папки `release` в удобное место
+10. Открываем _PowerShell_ или _CMD_ из этого места и выполняем:
+
+    `windeployqt.exe --compiler-runtime nesca.exe`
+
+11. Копируем в эту же папку _.dll_ файлы из `репозиторий/src/3rdparty`; и папку `репозиторий/src/pwd_lists`
+
+#### Linux
 
 1. [Официальный дистрибутив Qt5](https://wiki.qt.io/Install_Qt_5_on_Ubuntu)
-
 2. Пакеты зависимостей:
 
 ```
 sudo apt-get install qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia5-plugins libqt5multimedia5 libssh-dev
 ```
 
-Сборка:
+3. Сборка:
 
 ```
 git clone https://github.com/S0Ulle33/nesca.git
