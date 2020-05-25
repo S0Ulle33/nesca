@@ -9,7 +9,6 @@ RC_ICONS = nesca.ico
 TEMPLATE = app
 SOURCES +=\
     main.cpp \
-    nesca_3.cpp \
     ActivityDrawerTh_HorNet.cpp \
     base64.cpp \
     DrawerTh_GridQoSScanner.cpp \
@@ -17,6 +16,7 @@ SOURCES +=\
     DrawerTh_ME2Scanner.cpp \
     DrawerTh_QoSScanner.cpp \
     DrawerTh_VoiceScanner.cpp \
+    nesca.cpp \
     piestat.cpp \
     progressbardrawer.cpp \
     STh.cpp \
@@ -38,7 +38,7 @@ SOURCES +=\
     IPCAuth.cpp
 
 
-HEADERS  += nesca_3.h \
+HEADERS  += \
     ActivityDrawerTh_HorNet.h \
     base64.h \
     DrawerTh_GridQoSScanner.h \
@@ -49,6 +49,8 @@ HEADERS  += nesca_3.h \
     externData.h \
     externFunctions.h \
     mainResources.h \
+    nesca.h \
+    nesca.rc \
     piestat.h \
     progressbardrawer.h \
     resource.h \
@@ -69,13 +71,13 @@ HEADERS  += nesca_3.h \
     RTSP.h \
     IPCAuth.h
 
-FORMS    += nesca_3.ui
+FORMS    += \
+    nesca.ui
 
 RESOURCES += \
-    nesca_3.qrc
+    nesca.qrc
 
-OTHER_FILES += \
-    nesca_3.rc
+OTHER_FILES +=
 
 win32: LIBS += -lws2_32
 

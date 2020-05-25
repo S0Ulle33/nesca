@@ -1,5 +1,5 @@
 <RCC>
-  <qresource prefix="/nesca_3">
+  <qresource prefix="/nesca">
     <file>small_font.ttf</file>
     <file>nesca.ico</file>
   </qresource>

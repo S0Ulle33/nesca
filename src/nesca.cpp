@@ -1,4 +1,4 @@
-﻿#include "nesca_3.h"
+﻿#include "nesca.h"
 #include <QFileDialog>
 #include "DrawerTh_QoSScanner.h"
 #include "STh.h"
@@ -60,7 +60,7 @@ bool smBit_6 = false;
 bool smBit_7 = false;
 bool smBit_8 = false;
 char gVER[32] = {0};
-int nesca_3::savedTabIndex = 0;
+int nesca::savedTabIndex = 0;
 
 bool startFlag = false;
 char gProxyIP[64] = {0};
@@ -127,7 +127,7 @@ QMenu *menuPS;
 
 QVector<QRect> NodeDots;
 QVector<QString> NodeAddrs;
-const nesca_3 *gthis;
+const nesca *gthis;
 bool BALogSwitched = false;
 bool widgetIsHidden = false;
 bool ME2ScanFlag = true, QoSScanFlag = false, VoiceScanFlag = false, PieStatFlag = false;
@@ -202,7 +202,7 @@ void _LoadPersInfoToLocalVars(int savedTabIndex) {
 	};
 }
 
-Ui::nesca_3Class *ui = new Ui::nesca_3Class;
+Ui::nesca_Class *ui = new Ui::nesca_Class;
 QGraphicsScene *testScene;
 
 qreal sharedY = 50;
@@ -213,7 +213,7 @@ QPen penBAThreads(QColor(250,32,61), 5, Qt::CustomDashLine);
 QPen penAllTargets(QColor(255,255,255, 30), 10, Qt::SolidLine);
 QPen penTargets(QColor(250,94,32), 6, Qt::SolidLine);
 QPen penSaved(QColor(72,255,0), 3, Qt::SolidLine);
-void nesca_3::drawVerboseArcs(unsigned long gTargets) {
+void nesca::drawVerboseArcs(unsigned long gTargets) {
 	testScene->clear();
 	qreal leftX = 185;
 	qreal rightX = -165;
@@ -562,7 +562,7 @@ void SetValidators()
     //ui->linePersKey->setValidator(validator);
 }
 
-void nesca_3::slotDrawTextPlacers()
+void nesca::slotDrawTextPlacers()
 {
 	QFont fnt;
 	fnt.setFamily("Eurostile");
@@ -675,7 +675,7 @@ void nesca_3::slotDrawTextPlacers()
 	};
 }
 
-void nesca_3::slotDrawDelimLines()
+void nesca::slotDrawDelimLines()
 {
 	int gHeight = ui->graphicLog->height();
 	QPen penDelim(QColor(255, 0, 0), 0.5);
@@ -712,7 +712,7 @@ QList<int> gLOL5;
 QList<int> gLOL6;
 QList<int> gLOL7;
 bool QOSWait = false;
-void nesca_3::slotQoSAddLine()
+void nesca::slotQoSAddLine()
 {
 	QOSWait = true;
 	sceneGraph->clear();
@@ -795,7 +795,7 @@ void nesca_3::slotQoSAddLine()
 	QOSWait = false;
 }
 
-void nesca_3::slotQoSAddGrid()
+void nesca::slotQoSAddGrid()
 {
 	sceneGrid->clear();
 
@@ -811,7 +811,7 @@ void nesca_3::slotQoSAddGrid()
 	};
 }
 
-void nesca_3::slotAddLine(int x1, int y1, int x2, int y2)
+void nesca::slotAddLine(int x1, int y1, int x2, int y2)
 {
 	sceneGrid->addLine(x1, y1, x2, y2, pen);
 	if(sceneGrid->items().size() > 10) 
@@ -821,7 +821,7 @@ void nesca_3::slotAddLine(int x1, int y1, int x2, int y2)
 	};
 }
 
-void nesca_3::slotAddPolyLine()
+void nesca::slotAddPolyLine()
 {
 	if(ME2ScanFlag)
 	{
@@ -862,12 +862,12 @@ void nesca_3::slotAddPolyLine()
 	};
 }
 
-void nesca_3::slotDrawGrid()
+void nesca::slotDrawGrid()
 {
 	sceneGrid->clear();
 }
 
-void nesca_3::slotDrawActivityGrid()
+void nesca::slotDrawActivityGrid()
 {
 	sceneActivityGrid->clear();
 	QPen penActivity(QColor(170, 170, 170, 150), 0.1);
@@ -881,7 +881,7 @@ void nesca_3::slotDrawActivityGrid()
 	};
 }
 
-void nesca_3::slotDrawActivityLine(QString data)
+void nesca::slotDrawActivityLine(QString data)
 {
 	sceneActivity->clear();
 
@@ -902,7 +902,7 @@ void nesca_3::slotDrawActivityLine(QString data)
 	titem->setDefaultTextColor(QColor(255, 255, 255, 80));
 }
 
-void nesca_3::slotDrawVoiceGrid(int factor)
+void nesca::slotDrawVoiceGrid(int factor)
 {
 	sceneGrid->clear();
 	QPen penActivity(QColor(170, 170, 170, factor), 0.1);
@@ -927,7 +927,7 @@ void nesca_3::slotDrawVoiceGrid(int factor)
 	};
 }
 
-void nesca_3::activateME2ScanScene()
+void nesca::activateME2ScanScene()
 {
 	if(ME2ScanFlag == false)
 	{
@@ -969,7 +969,7 @@ void nesca_3::activateME2ScanScene()
 	};
 }
 
-void nesca_3::activateQoSScanBut()
+void nesca::activateQoSScanBut()
 {
 	if(QoSScanFlag == false)
 	{
@@ -1027,7 +1027,7 @@ void nesca_3::activateQoSScanBut()
 	};
 }
 
-void nesca_3::activateVoiceScanBut()
+void nesca::activateVoiceScanBut()
 {
 	if(VoiceScanFlag == false)
 	{
@@ -1069,7 +1069,7 @@ void nesca_3::activateVoiceScanBut()
 	};
 }
 
-void nesca_3::slotUpdatePie()
+void nesca::slotUpdatePie()
 {
 	sceneGraph->clear();
 	vsTh->doEmitDrawGrid(70);
@@ -1224,7 +1224,7 @@ void nesca_3::slotUpdatePie()
 	};
 }
 
-void nesca_3::activatePieStatBut()
+void nesca::activatePieStatBut()
 {
 	if(PieStatFlag == false)
 	{
@@ -1267,7 +1267,7 @@ void nesca_3::activatePieStatBut()
 	};
 }
 
-void nesca_3::switchDataFields()
+void nesca::switchDataFields()
 {
 	if (!BALogSwitched)
 	{
@@ -1286,7 +1286,7 @@ void nesca_3::switchDataFields()
 	};
 }
 
-void nesca_3::slotTabChanged(int index){
+void nesca::slotTabChanged(int index){
 	if(index <= 2) savedTabIndex = index;
 }
 
@@ -1298,7 +1298,7 @@ void copyToClipboardLocation() {
 
 	QDesktopServices::openUrl(QUrl::fromLocalFile(dir));
 }
-bool nesca_3::eventFilter(QObject* obj, QEvent *event)
+bool nesca::eventFilter(QObject* obj, QEvent *event)
 {
 	if (obj == qwm)
 	{
@@ -1348,14 +1348,14 @@ bool nesca_3::eventFilter(QObject* obj, QEvent *event)
 	};
 }
 
-void nesca_3::slotClearLogs()
+void nesca::slotClearLogs()
 {
 	ui->dataText->clear();
 	BAModel->clear();
 }
 
 int c = 1;
-void nesca_3::slotSaveImage(QAction *qwe)
+void nesca::slotSaveImage(QAction *qwe)
 {
 	QObject *smB = this->sender();
 	int ci = ui->tabMainWidget->currentIndex();
@@ -1449,7 +1449,7 @@ void PieStatView::contextMenuEvent(QContextMenuEvent *event)
 
 QTextBrowser *SendData;
 QTextBrowser *RecvData;
-void nesca_3::slotShowDataflow()
+void nesca::slotShowDataflow()
 {
 	if(MapWidgetOpened == false)
 	{
@@ -1512,7 +1512,7 @@ QGraphicsPathItem *GiveMeGItem(QVector<QPointF> vAnomLst)
 	return new QGraphicsPathItem(path);
 }
 
-void nesca_3::slotVoiceAddLine()
+void nesca::slotVoiceAddLine()
 {
 	int as = 0;
 	if(VoiceScanFlag)
@@ -1580,7 +1580,7 @@ QRegExp _rOutProt(" HTTP/1.\\d+");
 QRegExp _rOutPath(" /(\\w|\\.|,|/|:|-|_|\\?|!|\\@|#|\\$|%|\\^|&|\\*|\\(|\\)|=|\\+|<|>|;|:|\"|'|~|\\[|\\])* ");
 QRegExp _rOutHost("Host: ((\\w|\\d|\\.|:|/)*)\\r\\n");
 QRegExp qrp("\\n(.+):");
-void nesca_3::slotOutData(QString str)
+void nesca::slotOutData(QString str)
 {
 	if(SendData != NULL) 
 	{
@@ -1617,7 +1617,7 @@ QRegExp _rIncScriptTag2("&lt;script .*&lt;/script&gt;");
 QRegExp _rIncStyleTag("&lt;style&gt;.*&lt;/style&gt;");
 
 QRegExp _rIncRN("\r\n(_|-|=|.*)*:");
-void nesca_3::slotIncData(QString ip, QString str)
+void nesca::slotIncData(QString ip, QString str)
 {
 	if(RecvData != NULL)
 	{
@@ -1757,7 +1757,7 @@ void nesca_3::slotIncData(QString ip, QString str)
 	};
 }
 
-void nesca_3::smReaction()
+void nesca::smReaction()
 {
 	QObject *smB = this->sender();
 
@@ -1912,7 +1912,7 @@ void nesca_3::smReaction()
 
 QLabel *smsgLbl;
 QLabel *smsgNLbl;
-void nesca_3::slotShowServerMsg(QString str)
+void nesca::slotShowServerMsg(QString str)
 {
 	 QMessageBox msgBox;
 	 msgBox.setWindowFlags			( Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint|Qt::SubWindow );
@@ -1932,12 +1932,12 @@ void nesca_3::slotShowServerMsg(QString str)
 	 msgBox.exec();
 }
 
-void nesca_3::DNSLine_ValueChanged()
+void nesca::DNSLine_ValueChanged()
 {
 	if(!globalScanFlag) ui->startScanButton_4->setText("Start");
 }
 
-void nesca_3::slotRestoreDefPorts()
+void nesca::slotRestoreDefPorts()
 {
 	int ci = ui->tabMainWidget->currentIndex();
 
@@ -1946,7 +1946,7 @@ void nesca_3::slotRestoreDefPorts()
 	else if (ci == 2) ui->importPortLine->setText(PORTSET);
 }
 
-void nesca_3::onLinkClicked(QUrl link)
+void nesca::onLinkClicked(QUrl link)
 {
 	QString lnk = link.toString();
 	if (lnk.compare("[PEKO]") == 0) {
@@ -1981,7 +1981,7 @@ void nesca_3::onLinkClicked(QUrl link)
 	}
 }
 
-void nesca_3::slotBlockButtons(bool value) {
+void nesca::slotBlockButtons(bool value) {
 	ui->startScanButton_3->setEnabled(!value);
 	ui->startScanButton_4->setEnabled(!value);
 	ui->importButton->setEnabled(!value);
@@ -2017,7 +2017,7 @@ QList<QStandardItem *> setRow(QString ip, QString loginPass, QString percentage)
 	return items;
 }
 std::atomic<bool> isBAModelLocked(false);
-int nesca_3::addBARow(QString ip, QString loginPass, QString percentage) {
+int nesca::addBARow(QString ip, QString loginPass, QString percentage) {
 	if (!globalScanFlag) return -1;
 	if (BALogSwitched) {
 		while (isBAModelLocked) Sleep(10);
@@ -2050,7 +2050,7 @@ int nesca_3::addBARow(QString ip, QString loginPass, QString percentage) {
 	
 	return 0;
 }
-void nesca_3::slotChangeBARow(int rowIndex, QString loginPass, QString percentage) {
+void nesca::slotChangeBARow(int rowIndex, QString loginPass, QString percentage) {
 	QModelIndex index = BAModel->index(rowIndex, 1, QModelIndex());
 	BAModel->setData(index, loginPass);
 	index = BAModel->index(rowIndex, 2, QModelIndex());
@@ -2093,11 +2093,11 @@ void nesca_3::slotChangeBARow(int rowIndex, QString loginPass, QString percentag
 		BAModel->item(rowIndex, 2)->setData(qbText, Qt::ForegroundRole);
 	}
 }
-void nesca_3::slotEditFilter() {
+void nesca::slotEditFilter() {
 	QDesktopServices::openUrl(QUrl::fromLocalFile("file:///" + ui->currentDirectoryLine->text() + "\\pwd_lists\\negatives.txt"));
 }
 
-void nesca_3::ConnectEvrthng()
+void nesca::ConnectEvrthng()
 {
 	connect(ui->edit_filter_button, SIGNAL(clicked()), this, SLOT(slotEditFilter()));
 
@@ -2184,7 +2184,7 @@ void nesca_3::ConnectEvrthng()
     connect(stt, SIGNAL(signalChangeBARow(int, QString, QString)), this, SLOT(slotChangeBARow(int, QString, QString)));
 }
 
-void nesca_3::saveOptions()
+void nesca::saveOptions()
 {
 	_LoadPersInfoToLocalVars(savedTabIndex);
 }
@@ -2358,7 +2358,7 @@ void RestoreSession()
 		};
 
 		fclose(resFile);
-        //_LoadPersInfoToLocalVars(nesca_3::savedTabIndex);
+        //_LoadPersInfoToLocalVars(nesca::savedTabIndex);
 		stt->doEmitionGreenFoundData("Previous session loaded.");
 	};
 }
@@ -2440,12 +2440,12 @@ std::string GetVer()
 #endif
 }
 
-void nesca_3::slotShowRedVersion()
+void nesca::slotShowRedVersion()
 {
 	ui->rVerLabel->show();
 }
 
-void nesca_3::mousePressEvent(QMouseEvent *event)
+void nesca::mousePressEvent(QMouseEvent *event)
 {
 	if (event->button() == Qt::LeftButton) {
 		dragPosition = event->globalPos() - frameGeometry().topLeft();
@@ -2453,21 +2453,21 @@ void nesca_3::mousePressEvent(QMouseEvent *event)
 	};
 }
 
-void nesca_3::mouseReleaseEvent(QMouseEvent * event)
+void nesca::mouseReleaseEvent(QMouseEvent * event)
 {
 	if (event->modifiers() == Qt::ControlModifier) {
 		event->accept();
 	};
 }
 
-void nesca_3::mouseMoveEvent(QMouseEvent * event)
+void nesca::mouseMoveEvent(QMouseEvent * event)
 {
 	QPoint CPos = (event->globalPos() - dragPosition);
 	QWidget::move(CPos);
 	if(qwm != NULL) qwm->move(CPos.x() + WIDGET_WIDTH + 5, CPos.y());
 }
 
-void nesca_3::exitButtonClicked()
+void nesca::exitButtonClicked()
 {
 	STTTerminate();
 	while (MainStarter::savingBackUpFile) Sleep(100);
@@ -2483,7 +2483,7 @@ void PekoWidget::pekoExitButtonClicked()
 	this->close();
 }
 
-void nesca_3::trayButtonClicked()
+void nesca::trayButtonClicked()
 {
 	if(tray->isVisible())
 	{
@@ -2497,16 +2497,16 @@ void nesca_3::trayButtonClicked()
 	};
 }
 
-void nesca_3::ChangeShuffle(bool val) {
+void nesca::ChangeShuffle(bool val) {
 	gShuffle = val;
 }
 
-void nesca_3::ChangeDebug(bool val) {
+void nesca::ChangeDebug(bool val) {
     gDebugMode = val;
 }
 
 bool stopFirst;
-void nesca_3::startScanButtonClicked()
+void nesca::startScanButtonClicked()
 {
 	if(startFlag == false)
 	{
@@ -2548,7 +2548,7 @@ void nesca_3::startScanButtonClicked()
 	};
 }
 
-void nesca_3::startScanButtonClickedDNS()
+void nesca::startScanButtonClickedDNS()
 {
 	if(startFlag == false)
 	{
@@ -2591,7 +2591,7 @@ void nesca_3::startScanButtonClickedDNS()
 	};
 }
 
-void nesca_3::importAndScan()
+void nesca::importAndScan()
 {
 	if (startFlag == false)
 	{
@@ -2644,7 +2644,7 @@ void nesca_3::importAndScan()
 	};
 }
 
-void nesca_3::IPScanSeq()
+void nesca::IPScanSeq()
 {
 	if (ui->ipLine->text() != "")
 	{
@@ -2682,7 +2682,7 @@ void nesca_3::IPScanSeq()
 	};
 }
 
-void nesca_3::DNSScanSeq()
+void nesca::DNSScanSeq()
 {
 	if (ui->dnsLine->text() != "")
 	{
@@ -2734,7 +2734,7 @@ void nesca_3::DNSScanSeq()
 	};
 }
 
-void nesca_3::ImportScanSeq()
+void nesca::ImportScanSeq()
 {
 	QString fileName;
 
@@ -2771,42 +2771,42 @@ void nesca_3::ImportScanSeq()
 	else stt->doEmitionYellowFoundData("Empty filename.");
 }
 
-void nesca_3::logoLabelClicked()
+void nesca::logoLabelClicked()
 {
 	QDesktopServices::openUrl(QUrl("http://nesca.d3w.org/"));
 }
 
-void nesca_3::ChangeLabelTO_ValueChanged(QString str)
+void nesca::ChangeLabelTO_ValueChanged(QString str)
 {
 	int gto = str.toInt();
 	gTimeOut = gto > 0 ? gto : 1;
 }
 
-void nesca_3::ChangeLabelThreads_ValueChanged(QString str)
+void nesca::ChangeLabelThreads_ValueChanged(QString str)
 {
 	gThreads = str.toInt();
 }
 
-void nesca_3::saveTLD(QString str){
+void nesca::saveTLD(QString str){
 	strncpy(gTLD, str.toLocal8Bit().data(), 128);
 }
 
-void nesca_3::ThreadDelay_ChangeValue(QString str)
+void nesca::ThreadDelay_ChangeValue(QString str)
 {
 	Threader::gThreadDelay = str.toInt();
 }
 
-void nesca_3::MaxBrutingThr_ChangeValue(QString str)
+void nesca::MaxBrutingThr_ChangeValue(QString str)
 {
 	gMaxBrutingThreads = str.toInt();
 }
 
-void nesca_3::appendDefaultText(QString str)
+void nesca::appendDefaultText(QString str)
 {
 	ui->dataText->append("<p style=\"color: #a1a1a1;\">[" + QTime::currentTime().toString() + "] " + str + "</p>");
 }
 
-void nesca_3::appendErrText(QString str)
+void nesca::appendErrText(QString str)
 {
 	ui->dataText->append("<span style=\"color:red;\">[" + QTime::currentTime().toString() + "]" + QString::fromUtf8(str.toLocal8Bit().data()) + "</span>");
 
@@ -2820,21 +2820,21 @@ void nesca_3::appendErrText(QString str)
 
 
 
-void nesca_3::appendOKText(QString str)
+void nesca::appendOKText(QString str)
 {
 	ui->dataText->append("<span style=\"color:#06ff00;\">[" + QTime::currentTime().toString() + "][OK] " + str + "</span>");
 }
-void nesca_3::appendTextCustom(QString str, QString color)
+void nesca::appendTextCustom(QString str, QString color)
 {
 	ui->dataText->append("<span style=\"color:#" + color + ";\">[" + QTime::currentTime().toString() + "][OK] " + str + "</span>");
 }
 
-void nesca_3::appendNotifyText(QString str)
+void nesca::appendNotifyText(QString str)
 {
 	ui->dataText->append("<span style=\"color:#efe100;\">[" + QTime::currentTime().toString() + "][*] " + str + "</span>");
 }
 
-void nesca_3::appendDebugText(QString str)
+void nesca::appendDebugText(QString str)
 {
 	ui->dataText->append("<span style=\"color:#0084ff;\">[DEBUG] " + str + "</span>");
 }
@@ -2921,7 +2921,7 @@ void enableHikvisionSupport(){
 }
 #endif
 
-void nesca_3::finishLoading() {
+void nesca::finishLoading() {
 
 	CreateVerFile();
 
@@ -2955,7 +2955,7 @@ void nesca_3::finishLoading() {
 #endif
 }
 
-//bool nesca_3::CheckPersKeyMain()
+//bool nesca::CheckPersKeyMain()
 //{
 //	saveOptions();
 //	QString y = QString(QCryptographicHash::hash((ypypNunu().c_str()), QCryptographicHash::Md5).toHex());
@@ -2996,7 +2996,7 @@ void nesca_3::finishLoading() {
 //	return false;
 //}
 //
-//void nesca_3::CheckPersKey()
+//void nesca::CheckPersKey()
 //{
 //	saveOptions();
 //	QString y = QString(QCryptographicHash::hash((ypypNunu().c_str()), QCryptographicHash::Md5).toHex());
@@ -3044,7 +3044,7 @@ void nesca_3::finishLoading() {
 //#define eicar5 "\"split\";e=eval;v=\"0x\";a=0;z=\"y\";try{a*=25}catch(zz){a=1}if(!a){try{--e(\"doc\"+\"ument\")[\"\x62od\"+z]}catch(q){}"
 
 
-nesca_3::nesca_3(bool isWM, QWidget *parent = 0) : QMainWindow(parent)
+nesca::nesca(bool isWM, QWidget *parent = 0) : QMainWindow(parent)
 {
 	/*if (isWM) {
 		Utils::emitScaryError();
@@ -3078,7 +3078,7 @@ nesca_3::nesca_3(bool isWM, QWidget *parent = 0) : QMainWindow(parent)
 	multiFontSmallFontArc.setUnderline(true);
 	ui->ipLabel->setFont(multiFontSmallFontArc);
 	
-	tray = new QSystemTrayIcon(QIcon(":/nesca_3/nesca.ico"), this);
+	tray = new QSystemTrayIcon(QIcon(":/nesca/nesca.ico"), this);
 	tray->hide();
 
 
@@ -3211,12 +3211,12 @@ nesca_3::nesca_3(bool isWM, QWidget *parent = 0) : QMainWindow(parent)
 		//}
 }
 
-nesca_3::~nesca_3()
+nesca::~nesca()
 {
     delete ui;
 }
 
-void nesca_3::STTTerminate()
+void nesca::STTTerminate()
 {
 	globalScanFlag = false;
 	startFlag = false;

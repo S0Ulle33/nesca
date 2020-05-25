@@ -2,7 +2,7 @@
 #ifndef DRAWERTH_QOSSCANNER_H
 #define DRAWERTH_QOSSCANNER_H
 
-#include "nesca_3.h"
+#include "nesca.h"
 
 class DrawerTh_QoSScanner : public QThread
 {

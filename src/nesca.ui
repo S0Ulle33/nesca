@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>nesca_3Class</class>
- <widget class="QMainWindow" name="nesca_3Class">
+ <class>nesca_Class</class>
+ <widget class="QMainWindow" name="nesca_Class">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -29,11 +29,11 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>NESCA 3</string>
+   <string>NESCA</string>
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>:/nesca_3/Z:/nesca.ico</normaloff>:/nesca_3/Z:/nesca.ico</iconset>
+    <normaloff>:/nesca/Z:/nesca.ico</normaloff>:/nesca/Z:/nesca.ico</iconset>
   </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
@@ -1151,7 +1151,7 @@ color: rgb(214, 214, 0);</string>
       </widget>
      </widget>
     </widget>
-    <widget class="QLabel" name="labelNesca_3">
+    <widget class="QLabel" name="labelNesca">
      <property name="geometry">
       <rect>
        <x>123</x>
@@ -1179,7 +1179,7 @@ color: rgb(214, 214, 0);</string>
       <string notr="true">color: rgb(216, 216, 216);background-color: rgba(2, 2, 2, 0);</string>
      </property>
      <property name="text">
-      <string>NESCA 3 :: Revealing the Unseen Horizon</string>
+      <string>NESCA :: Revealing the Unseen Horizon</string>
      </property>
      <property name="textFormat">
       <enum>Qt::PlainText</enum>
@@ -1826,8 +1826,8 @@ p, li { white-space: pre-wrap; }
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="nesca_3.qrc">
-       <normaloff>:/nesca_3/nesca.ico</normaloff>:/nesca_3/nesca.ico</iconset>
+      <iconset resource="nesca.qrc">
+       <normaloff>:/nesca/nesca.ico</normaloff>:/nesca/nesca.ico</iconset>
      </property>
     </widget>
     <widget class="QLabel" name="WhiteLabel">
@@ -2731,7 +2731,7 @@ p, li { white-space: pre-wrap; }
     </widget>
     <zorder>BATableView</zorder>
     <zorder>graphicTextPlacer</zorder>
-    <zorder>labelNesca_3</zorder>
+    <zorder>labelNesca</zorder>
     <zorder>tabMainWidget</zorder>
     <zorder>line</zorder>
     <zorder>exitButton</zorder>
@@ -2862,7 +2862,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>dataText</tabstop>
  </tabstops>
  <resources>
-  <include location="nesca_3.qrc"/>
+  <include location="nesca.qrc"/>
  </resources>
  <connections/>
 </ui>

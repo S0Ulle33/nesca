@@ -40,7 +40,7 @@ std::string Utils::getStartDate() {
 int Utils::addBARow(QString str1, QString str2, QString str3, int rowIndex) {
 	if (BALogSwitched) {
 		if (rowIndex == -1) {
-			rowIndex = nesca_3::addBARow(str1, str2, str3);
+			rowIndex = nesca::addBARow(str1, str2, str3);
 		}
 		else {
 			stt->doEmitionChangeBARow(rowIndex, str2, str3);

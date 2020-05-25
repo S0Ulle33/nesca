@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by nesca_3.rc
+// Used by nesca.rc
 //
 #define MAX_ADDR_LEN                    128
 #define TITLE_MAX_SIZE                  512

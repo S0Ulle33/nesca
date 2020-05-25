@@ -2,7 +2,7 @@
 #ifndef DRAWERTH_VOICESCANNER_H
 #define DRAWERTH_VOICESCANNER_H
 
-#include "nesca_3.h"
+#include "nesca.h"
 
 class DrawerTh_VoiceScanner : public QThread
 {

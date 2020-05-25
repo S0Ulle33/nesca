@@ -1,4 +1,4 @@
-#include "nesca_3.h"
+#include "nesca.h"
 #include <QApplication>
 #include <qfontdatabase.h>
 #include <QMessageBox>
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     int fontID(-1);
     bool fontWarningShown(false);
     for (QStringList::const_iterator constIterator = list.constBegin(); constIterator != list.constEnd(); ++constIterator) {
-        QFile res(":/nesca_3/" + *constIterator);
+        QFile res(":/nesca/" + *constIterator);
         if (res.open(QIODevice::ReadOnly) == false) {
             if (fontWarningShown == false) {
                 fontWarningShown = true;
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    nesca_3 *gui = new nesca_3(isWM, 0);
+    nesca *gui = new nesca(isWM, 0);
     gui->showNormal();
     return a.exec();
 }

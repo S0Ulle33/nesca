@@ -2,7 +2,7 @@
 #ifndef PIESTAT_H
 #define PIESTAT_H
 
-#include "nesca_3.h"
+#include "nesca.h"
 
 class PieStat : public QThread
 {

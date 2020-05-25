@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="Rules for nesca_3" Description="Code analysis rules for nesca_3.vcxproj." ToolsVersion="14.0">
+<RuleSet Name="Rules for nesca" Description="Code analysis rules for nesca.vcxproj." ToolsVersion="14.0">
   <IncludeAll Action="Warning" />
   <Rules AnalyzerId="Microsoft.Analyzers.NativeCodeAnalysis" RuleNamespace="Microsoft.Rules.Native">
     <Rule Id="C26100" Action="Warning" />

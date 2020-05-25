@@ -2,7 +2,7 @@
 #ifndef STH_H
 #define STH_H
 
-#include "nesca_3.h"
+#include "nesca.h"
 #include "externFunctions.h"
 #include "MainStarter.h"
 #include "externData.h"

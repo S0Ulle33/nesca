@@ -2,7 +2,7 @@
 #ifndef PROGRESSBARDRAWER_H
 #define PROGRESSBARDRAWER_H
 
-#include "nesca_3.h"
+#include "nesca.h"
 
 class ProgressbarDrawer : public QThread
 {
