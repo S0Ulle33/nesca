@@ -14,8 +14,8 @@
 
 ## Бинарники
 
-* [Последние релизы](https://github.com/S0Ulle33/nesca/releases)
-* [Старый Билд Win32 (24D87-801)](https://mega.nz/#!yZV3UDpY!6D5k-Dd1amF0i_rzIhFM-WU7cdN3pxR2mwsYiIqedtU), пароль - 24D87-801
+- [Последние релизы](https://github.com/S0Ulle33/nesca/releases)
+- [Старый Билд Win32 (24D87-801)](https://mega.nz/#!yZV3UDpY!6D5k-Dd1amF0i_rzIhFM-WU7cdN3pxR2mwsYiIqedtU), пароль - 24D87-801
 
 ## Сборка
 
