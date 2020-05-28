@@ -34,7 +34,7 @@ private:
 public:
 	static std::vector<int> portVector;
 	static int flCounter;
-	static bool savingBackUpFile;
+    static volatile bool savingBackUpFile;
 	void saveBackupToFile();
 	void saveBK();
 
@@ -47,8 +47,7 @@ public:
 		BrutingThrds = 0;
 		found = 0;
 		gTargets = 0;
-		cons = 0;
-		found = 0;
+        cons = 0;
 		indexIP = 0;
 		flCounter = 0;
 		gflIndex = 0;

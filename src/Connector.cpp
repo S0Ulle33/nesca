@@ -233,7 +233,7 @@ int pConnectRTSP(const char* ip, const int port, std::string *buffer, const std:
 	return -1;
 }
 
-void eraser(std::string *buffer, const std::string delim1, const std::string delim2) {
+void eraser(std::string *buffer, const std::string &delim1, const std::string &delim2) {
 	int pos = -1;
 	while ((pos = buffer->find(delim1)) != -1) {
 		int ePos = buffer->find(delim2, pos);

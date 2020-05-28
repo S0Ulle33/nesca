@@ -45,7 +45,7 @@ extern int found, indexIP, gMode,
     ssh,
 	cIndex;
 extern unsigned int Activity;
-extern char gTLD[128], gPorts[65536], gProxyIP[64], gProxyPort[8], currentIP[MAX_ADDR_LEN], finalIP[32];
+extern char gTLD[128], gPorts[65536], gProxyIP[64], currentIP[MAX_ADDR_LEN], gProxyPort[8], finalIP[32];
 
 extern char gVER[32];
 

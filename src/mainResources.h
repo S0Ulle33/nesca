@@ -147,10 +147,9 @@ struct NET_DVR_DEVICEINFO_V30
 	unsigned char bySubProto; //子码流传输协议类型0-private, 1-rtsp
 	unsigned char bySupport; //能力，位与结果为0表示不支持，1表示支持，
 	unsigned char bySupport1; // 能力集扩充，位与结果为0表示不支持，1表示支持
-	unsigned char byRes1;
+    unsigned char byRes1;
+    unsigned char byRes2; //保留
 	int wDevType; //设备型号
-
-	unsigned char byRes2; //保留
 };
 
 struct PathStr{

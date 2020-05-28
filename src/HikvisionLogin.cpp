@@ -26,10 +26,10 @@ const char headerIVMS[32] = {
 };
 
 const char headerRVI[32] = {
-	0xa0, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x00,
+    0xa0, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x00,
 	0x61, 0x64, 0x6d, 0x69, 0x6e, 0x00, 0x00, 0x00,
 	0x61, 0x64, 0x6d, 0x69, 0x6e, 0x00, 0x00, 0x00,
-	0x04, 0x01, 0x00, 0x00, 0x00, 0x00, 0xa1, 0xaa
+    0x04, 0x01, 0x00, 0x00, 0x00, 0x00, 0xa1, 0xaa
 };
 
 const char loginRVIHeaderStart[8] = {
@@ -103,9 +103,9 @@ bool HikVis::checkHikk(const char * sDVRIP, int port) {
 	setsockopt(sock, SOL_SOCKET, SO_LINGER, (const char *)&linger, sizeof(linger));
 
 	int res = connect(sock, (sockaddr*)&sa, sizeof(sa));
-	int bTO;
-	char buff[2048] = { 0 };
+    int bTO;
 	if (res != SOCKET_ERROR) {
+        char buff[2048] = { 0 };
 		send(sock, headerIVMS, 32, 0);
 		char tBuff[32] = { 0 };
 		int offset = 0;
@@ -195,8 +195,8 @@ bool HikVis::checkRVI(const char * sDVRIP, int port) {
 
 	int res = connect(sock, (sockaddr*)&sa, sizeof(sa));
 	int bTO;
-	char buff[2048] = { 0 };
 	if (res != SOCKET_ERROR) {
+        char buff[2048] = { 0 };
 		send(sock, headerRVI, 32, 0);
 		char tBuff[32] = { 0 };
 		int offset = 0;
@@ -285,9 +285,9 @@ bool HikVis::checkSAFARI(const char * sDVRIP, int port) {
 	setsockopt(sock, SOL_SOCKET, SO_LINGER, (const char *)&linger, sizeof(linger));
 
 	int res = connect(sock, (sockaddr*)&sa, sizeof(sa));
-	int bTO;
-	char buff[2048] = { 0 };
+    int bTO;
 	if (res != SOCKET_ERROR) {
+        char buff[2048] = { 0 };
 		send(sock, headerSAFARI, 128, 0);
 		char tBuff[128] = { 0 };
 		int offset = 0;

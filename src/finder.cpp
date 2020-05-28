@@ -583,7 +583,7 @@ void fputsf(char *text, int flag)
         strcat (string, "</div>");
 
 		while(fOpened) {
-			Sleep((rand() % 10 + 60));
+            Sleep(rand() % 10 + 60);
 		};
 		fOpened = true;
         fputs(string, file);
@@ -686,7 +686,7 @@ void _specFillerCustom(const char *ip, int port, const char *finalstr, const cha
 
 	++PieBA;
 
-	if (strlen(login) > 0 || strlen(pass) > 0)
+    if (login[0] != '\0' || pass[0] != '\0')
 	{
 		sprintf(log, "<font color=orangered>%s</font>: <span id=\"hostSpan\"><a href=\"%s\"><font color=darkcyan>%s (%s:%s)</font></a></span> T: <font color=GoldenRod>%s</font>\n",
 			classString, ip, ip, login, pass, finalstr);
@@ -722,7 +722,7 @@ void _specFillerBA(const char *ip, int port, const char *finalstr, const char *l
 		offset = 7;
 	}
 
-	if (strlen(login) > 0 || strlen(pass) > 0)
+    if (login[0] != '\0' || pass[0] != '\0')
     {
 		if (8 == offset) {
 			sprintf(log, "[BA]: <span id=\"hostSpan\"><a href=\"https://%s:%s@%s\"><font color=floralwhite>%s:%s@%s</font></a></span> T: <font color=GoldenRod>%s</font>\n",
@@ -754,7 +754,7 @@ void _specFillerRSTP(const char *ip, int port, const char *finalstr, const char 
 
 	++PieBA;
 
-	if (strlen(login) > 0 || strlen(pass) > 0)
+    if (login[0] != '\0' || pass[0] != '\0')
 	{
 			sprintf(log, "[RSTP]: <span id=\"hostSpan\"><a href=\"%s11\"><font color=\"#736AFF\">%s11 (%s:%s)</font></a></span> T: <font color=#F0E68C>%s</font>\n",
 				ip, ip, login, pass, finalstr);
@@ -774,7 +774,7 @@ void _specWEBIPCAMBrute(const char *ip, int port, const char *finalstr, int flag
 	IPC ipc;
     lopaStr lps = ipc.IPCLobby(ip, port, SPEC, cookie);
 
-	if(strstr(lps.login, "UNKNOWN") == NULL && strlen(lps.other) == 0) 
+    if(strstr(lps.login, "UNKNOWN") == NULL && lps.other[0] == '\0')
 	{
 		_specFillerCustom(ip, port, finalstr, lps.login, lps.pass, flag, "[WIC]");
 	};
@@ -792,7 +792,7 @@ int _specBrute(const char *ip, int port,
 		return -1;
 	}
 
-	if(strstr(lps.login, "UNKNOWN") == NULL && strlen(lps.other) == 0) 
+    if(strstr(lps.login, "UNKNOWN") == NULL && lps.other[0] == '\0')
 	{
 		if (isBA) {
 			_specFillerBA(ip, port, finalstr, lps.login, lps.pass, flag);
@@ -850,7 +850,7 @@ const char *GetTitle(const char* str)
 		};
 	};
 
-	if(strlen(finalstr) != 0) strcat(finalstr, "::");
+    if(finalstr[0] != '\0') strcat(finalstr, "::");
 
 	if(strstri(str, "<card") != NULL)
 	{
@@ -946,14 +946,14 @@ void _saveSSH(const char *ip, int port, int size, const char *buffcpy)
 {
 	if(buffcpy != NULL)
     {
-		char log[2048] = {0};
-		char logEmit[2048] = {0};
-		char goodStr[256] = {0};
-		char banner[256] = {0};
-
 		const char *ptr1 = strstr(buffcpy, "|+|");
 		if(ptr1 != NULL)
 		{
+            char log[2048] = {0};
+            char logEmit[2048] = {0};
+            char goodStr[256] = {0};
+            char banner[256] = {0};
+
 			int gsz = ptr1 - buffcpy;
 			strncpy(goodStr, buffcpy, gsz);
 			if(strlen(ptr1 + 3) > 0) strcpy(banner, ptr1 + 3);
@@ -965,10 +965,10 @@ void _saveSSH(const char *ip, int port, int size, const char *buffcpy)
             fputsf (log, -22);
 			char loginSSH[128] = {0};
 			char passSSH[128] = {0};
-			const char *ptrl1 = strstr(buffcpy, ":");
+            const char *ptrl1 = strchr(buffcpy, ':');
 			int lpsz = ptrl1 - buffcpy;
 			strncpy(loginSSH, buffcpy, lpsz);
-			const char *ptrl2 = strstr(buffcpy, "@");
+            const char *ptrl2 = strchr(buffcpy, '@');
 			lpsz = ptrl2 - ptrl1;
 			strncpy(passSSH, ptrl1 + 1, lpsz);
 			stt->doEmitionFoundData(QString::fromLocal8Bit(logEmit));
@@ -1336,32 +1336,24 @@ void _saveSSH(const char *ip, int port, int size, const char *buffcpy)
 
 void _getPopupTitle(PathStr *ps, char *str)
 {
-	strcat(ps->headr, "[Popup. Title: "); 				
+    strcat(ps->headr, "[Popup. Title: ");
 
-	char *ptr1 = strstr(str, ",");
-	if(ptr1 != NULL)
-	{
-		char *ptr2 = strstr(ptr1 + 1, ",");
-		if(ptr2 != NULL)
-		{
+    char *ptr1 = strchr(str, ',');
+    if(ptr1 != NULL) {
+        char *ptr2 = strchr(ptr1 + 1, ',');
+        if(ptr2 != NULL) {
 			int sz = ptr2 - ptr1 - 1;
 			if(sz >= 32) sz = 32;
 			
 			strncat(ps->headr, ptr1 + 1, sz < 32 ? sz : 32);
-		}
-		else
-		{
+        } else {
 			strcat(ps->headr, "[BOUNDARY ERROR]");
-		};
-	}
-	else
-	{
-		char temp[32] = {0};
-		if(strstr(str, "(") != NULL){
-			strncpy(temp, strstr(str, "("), 32);
-			strcat(ps->headr, temp);
-		};
-	};
+        }
+    } else if(strchr(str, '(') != NULL) {
+            char temp[32] = {0};
+            strncpy(temp, strchr(str, '('), 32);
+            strcat(ps->headr, temp);
+    }
 
 	strcat(ps->headr, "]"); 
 }
@@ -1426,11 +1418,11 @@ void _getLinkFromJSLocation(char *dataBuff, char *str, char *tag, char *ip, int 
 							else strncpy(dataBuff, tempBuff, sz);
 						};
 					};
-					delete tempBuff;
+                    delete [] tempBuff;
 				}
 				else
 				{
-					ptrQuote1 = strstr(ptr2, "=");
+                    ptrQuote1 = strchr(ptr2, '=');
 					if(ptrQuote1 != NULL)
 					{
 						char *ptrQuote2 = _findFirst(ptr2, ";\n");
@@ -1439,7 +1431,7 @@ void _getLinkFromJSLocation(char *dataBuff, char *str, char *tag, char *ip, int 
 							int sz = ptrQuote2 - ptr2 - 1;
 							char link1[512] = {0};
 							strncpy(link1, ptr2 + 1, sz);
-							char *ptrQuote3 = strstr(link1, "/");
+                            char *ptrQuote3 = strchr(link1, '/');
 							if(ptrQuote3 != NULL)
                             {
 								strcpy(dataBuff, ptrQuote3);
@@ -1902,7 +1894,7 @@ std::string getTitle(const char *str, const int flag) {
 		std::string strHeader = std::string(str);
 		int strStart = strHeader.find("ver: ");
 		std::string strChunk = strHeader.substr(strStart + 5);
-		std::string headerFinal = strChunk.substr(0, strChunk.find("\r"));
+        std::string headerFinal = strChunk.substr(0, strChunk.find('\r'));
 		return headerFinal;
 	}
 	else {
@@ -2011,7 +2003,7 @@ std::string getTitle(const char *str, const int flag) {
 			};
 		}
 
-		if (strlen(finalstr) == 0) {
+        if (finalstr[0] == '\0') {
 
 			if ((ptr1 = strstri(str, "<body>")) != NULL) {
 				char *ptr2 = strstri(ptr1, "</body>");
@@ -2109,7 +2101,7 @@ std::string equivRedirectHandler(std::string *buff, char* ip, int port, Lexems *
 	else if (-1 != STRSTR(location, "http://")) {
 		int httpProto = STRSTR(location, "http://");
 
-		int portPos = location.find(":", 7);
+        int portPos = location.find(':', 7);
 		if (-1 != portPos) {
 			int portPosEnd = location.find_first_of("/ \n>\"'", portPos);
 			if (-1 != portPosEnd) {
@@ -2136,7 +2128,7 @@ std::string equivRedirectHandler(std::string *buff, char* ip, int port, Lexems *
 	else if (-1 != STRSTR(location, "https://")) {
 		int httpProto = STRSTR(location, "https://");
 
-		int portPos = location.find(":", 8);
+        int portPos = location.find(':', 8);
 		if (-1 != portPos) {
 			int portPosEnd = location.find_first_of("/ \n>\"'", portPos);
 			if (-1 != portPosEnd) {
@@ -2190,7 +2182,7 @@ std::string equivRedirectHandler(std::string *buff, char* ip, int port, Lexems *
 }
 std::string getScriptField(std::string *buff) {
 	int pos1 = STRSTR((const std::string *)buff, "<script");
-	pos1 = buff->find(">", pos1) + 1;
+    pos1 = buff->find('>', pos1) + 1;
 	int pos2 = STRSTR((const std::string *)buff, "</script>");
 	if (-1 == pos2) {
 		return "";
@@ -2201,7 +2193,7 @@ std::string getScriptField(std::string *buff) {
 	while (pos1 == pos2) {
 		tempBuff.assign(tempBuff.substr(pos1 + 9));
 		pos1 = STRSTR((const std::string *)&tempBuff, "<script");
-		pos1 = tempBuff.find(">", pos1) + 1;
+        pos1 = tempBuff.find('>', pos1) + 1;
 		pos2 = STRSTR((const std::string *)&tempBuff, "</script>");
 		if (-1 == pos2) {
 			return "";
@@ -2255,7 +2247,7 @@ std::string jsRedirectHandler(std::string *buff, char* ip, int port, Lexems *cou
 	}
 
 	int eqPos = buffcpy.find_first_of("=(", pos);
-	int spacePosFirst = buffcpy.find_first_not_of(" ", eqPos);
+    int spacePosFirst = buffcpy.find_first_not_of(' ', eqPos);
 	int spacePosSecond = buffcpy.find_first_of(");", spacePosFirst);
 	std::string subRedirect = buffcpy.substr(spacePosFirst + 1, spacePosSecond - spacePosFirst - 1);
 	int quotePosFirst = subRedirect.find_first_of("\"'");
@@ -2284,10 +2276,10 @@ std::string jsRedirectHandler(std::string *buff, char* ip, int port, Lexems *cou
 //		std::string path = finalAddition.substr(pos1 + 1, pos2 - (pos1 + 1));
 		//location += std::string(ip) + "/" + path;
 
-		int portDelim = subLocation.find(":", 7);
+        int portDelim = subLocation.find(':', 7);
 		if (-1 != portDelim) {
 			std::string portString = subLocation.substr(portDelim + 1);
-			int trimPos = portString.find("/");
+            int trimPos = portString.find('/');
 			if (-1 != trimPos) {
 				portString = portString.substr(0, trimPos);
 			}
@@ -2396,7 +2388,7 @@ void parseFlag(int flag, char* ip, char *ipRaw, int port, std::string *buff, con
 		const lopaStr &lps = FTPA::FTPLobby(ip, port, &ps);
 
 		if (0 != ps.directoryCount) {
-			if (strstr(lps.login, "UNKNOWN") == NULL && strlen(lps.other) == 0)
+            if (strstr(lps.login, "UNKNOWN") == NULL && lps.other[0] == '\0')
 			{
 				++PieBA;
 
@@ -2441,7 +2433,7 @@ void parseFlag(int flag, char* ip, char *ipRaw, int port, std::string *buff, con
 	{
 		HikVis hv;
 		lopaStr lps = hv.HVLobby(ip, port);
-		if (strstr(lps.login, "UNKNOWN") == NULL && strlen(lps.other) == 0)
+        if (strstr(lps.login, "UNKNOWN") == NULL && lps.other[0] == '\0')
 		{
             _specFillerCustom(ip, port, "[Hikvision IVMS]", lps.login, lps.pass, 0, "[SVC]");
 			//	lps.login, lps.pass, "[Hikvision IVMS]", "UTF-8", "Basic Authorization");
@@ -2474,7 +2466,7 @@ void parseFlag(int flag, char* ip, char *ipRaw, int port, std::string *buff, con
 	{
 		HikVis hv;
 		lopaStr lps = hv.RVILobby(ip, port);
-		if (strstr(lps.login, "UNKNOWN") == NULL && strlen(lps.other) == 0)
+        if (strstr(lps.login, "UNKNOWN") == NULL && lps.other[0] == '\0')
 		{
             _specFillerCustom(ip, port, "[RVI]", lps.login, lps.pass, 0, "[SVC]");
 
@@ -2847,14 +2839,14 @@ int handleFramesets(std::string *buffcpyOrig, char* ip, char* ipRaw, int port, i
 		int framePos = buffcpy.find("<frame ", pos + 10);
 		int counter = 0;
 		while (framePos != -1) {
-			int framePosEnd = buffcpy.find(">", framePos);
+            int framePosEnd = buffcpy.find('>', framePos);
 
 			std::string frameString = buffcpy.substr(framePos, framePosEnd - framePos);
 			framePos = buffcpy.find("<frame ", framePos + 1);
 
 			int frameSrcPos = frameString.find("src");
 			if (-1 != frameSrcPos) {
-				int eqPos = frameString.find_first_of("=", frameSrcPos);
+                int eqPos = frameString.find_first_of('=', frameSrcPos);
 				if (-1 != eqPos) {
 					int quotePos1 = frameString.find_first_of("\"'", eqPos);
 					if (-1 != quotePos1) {
@@ -2905,9 +2897,9 @@ int handleFramesets(std::string *buffcpyOrig, char* ip, char* ipRaw, int port, i
 				location = location.substr(0, location.size() - 1);
 			}
 			newPort = port;
-			int portPos = location.find(":", 8);
+            int portPos = location.find(':', 8);
 			if (-1 != portPos) {
-				int secPos = location.find("/", 8);
+                int secPos = location.find('/', 8);
 				if (-1 != secPos) {
 					if (portPos < secPos) {
 						newPort = std::stoi(location.substr(portPos + 1, secPos - portPos - 1));
@@ -2924,9 +2916,9 @@ int handleFramesets(std::string *buffcpyOrig, char* ip, char* ipRaw, int port, i
 				location = location.substr(0, location.size() - 1);
 			}
 			newPort = 443;
-			int portPos = location.find(":", 8);
+            int portPos = location.find(':', 8);
 			if (-1 != portPos) {
-				int secPos = location.find("/", 8);
+                int secPos = location.find('/', 8);
 				if (-1 != secPos) {
 					if (portPos < secPos) {
 						newPort = std::stoi(location.substr(portPos + 1, secPos - portPos - 1));
@@ -2978,12 +2970,12 @@ int Lexems::filler(char* ip, char *ipRaw, int port, std::string *buffcpy, int si
 		if (flag != -1) {
 			const std::string &header = getHeader((const std::string *) buffcpy, flag);
 			if (flag < 2 || flag > 6) {
-                if ((flag = handleFramesets(buffcpy, (location.size() > 0 ? (char*)location.c_str() : ip), ipRaw, port, flag, cp.c_str())) == -1) {
+                if ((flag = handleFramesets(buffcpy, (location.size() > 0 ? (char*)location.c_str() : ip), ipRaw, port, flag, const_cast<char*>(cp.c_str()))) == -1) {
 					return -1;
 				}
 			}
 			else {
-                parseFlag(flag, (location.size() > 0 ? (char*)location.c_str() : ip), ipRaw, port, buffcpy, header, cp.c_str());
+                parseFlag(flag, (location.size() > 0 ? (char*)location.c_str() : ip), ipRaw, port, buffcpy, header, const_cast<char*>(cp.c_str()));
 			}
 			return flag;
 		}

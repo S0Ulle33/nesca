@@ -1,9 +1,8 @@
 #include "IPRandomizer.h"
 
 
-IPRandomizer::IPRandomizer(std::vector<IPRangeHolder> ipRangeVec, int shuffleGap)
+IPRandomizer::IPRandomizer(std::vector<IPRangeHolder> ipRangeVec, int shuffleGap) : ipRangeVec(ipRangeVec)
 {
-	this->ipRangeVec = ipRangeVec;
 	this->shuffleGap = shuffleGap;
 
 	for (int i = 0; i < ipRangeVec.size(); ++i) {

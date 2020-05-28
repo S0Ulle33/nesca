@@ -18,7 +18,7 @@ int _sshConnect(const char *user, const char *pass, const char *host, int port) 
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
         int proxyPort = std::atoi(gProxyPort);
-        if(strlen(gProxyIP) != 0 && (proxyPort > 0 && proxyPort < 65535)) {
+        if(gProxyIP[0] != '\0' && (proxyPort > 0 && proxyPort < 65535)) {
             curl_easy_setopt(curl, CURLOPT_PROXY, gProxyIP);
             curl_easy_setopt(curl, CURLOPT_PROXYPORT, proxyPort);
         } else curl_easy_setopt(curl, CURLOPT_PROXY, "");
@@ -116,7 +116,7 @@ int SSHBrute(const char* host, int port, std::string *buffer, const char *banner
     {
         if(!globalScanFlag) break;
         strcpy(temp, sshlpLst[i]);
-        ptr1 = strstr(temp, ":");
+        ptr1 = strchr(temp, ':');
 
         if (ptr1 == NULL) {
             stt->doEmitionRedFoundData("[SSH]Wrong format: " + QString(temp));
@@ -164,7 +164,7 @@ int SSHAuth::SSHLobby(const char *ip, int port, std::string *buffer)
 		Connector con;
 		con.nConnect(ip, port, &sshBanner);
 
-		if (strlen(sshBanner.c_str()) > 0)
+        if (sshBanner[0] != '\0')
         {
 			++BrutingThrds;
 			stt->doEmitionUpdateArc(gTargets);

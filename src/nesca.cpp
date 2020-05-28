@@ -156,12 +156,12 @@ void _LoadPersInfoToLocalVars(int savedTabIndex) {
 	if (savedTabIndex == 0)
 	{
 		gMode = 0;
-		gThreads = ui->threadLine->text().toInt();
-		QString targetLine = ui->ipLine->text();
+        gThreads = ui->threadLine->text().toInt();
 
 		if (ui->ipLine->text().indexOf("-") > 0)
 		{
-			if (ui->ipLine->text().indexOf("/") < 0) {
+            if (ui->ipLine->text().indexOf("/") < 0) {
+                QString targetLine = ui->ipLine->text();
 				QList<QString> splittedTargetLine = targetLine.split("-");
 				strcpy(currentIP, splittedTargetLine[0].toLocal8Bit().data());
 				strcpy(finalIP, splittedTargetLine[1].toLocal8Bit().data());
@@ -1354,7 +1354,6 @@ void nesca::slotClearLogs()
 	BAModel->clear();
 }
 
-int c = 1;
 void nesca::slotSaveImage(QAction *qwe)
 {
 	QObject *smB = this->sender();
@@ -1405,7 +1404,7 @@ void nesca::slotSaveImage(QAction *qwe)
 			".png",
 			&t
 			);
-			if (filename != "") pixmap.save(filename);
+            if (!filename.isEmpty()) pixmap.save(filename);
 		}
 		else
 		{
@@ -1433,7 +1432,7 @@ void nesca::slotSaveImage(QAction *qwe)
 				".png",
 				&t
 				);
-			if (filename != "") pixmap.save(filename);
+            if (!filename.isEmpty()) pixmap.save(filename);
 		};
 	};
 }
@@ -2226,21 +2225,24 @@ void RestoreSession()
 	{
 		stt->doEmitionYellowFoundData("Previous session file found! Restoring...");
 
+        const size_t sessionPrefixLen = strlen("[SESSION]:");
+        const size_t shufflePrefixLen = strlen("[SHUFFLE]:");
 		while(fgets(resStr, 128, resFile) != NULL)
 		{
 			if(strstr(resStr, "[SESSION]:") != NULL)
 			{
-				lex = strtok(strstr(resStr, "[SESSION]:") + strlen("[SESSION]:"), " ");
+                lex = strtok(strstr(resStr, "[SESSION]:") + sessionPrefixLen, " ");
 				gMode = atoi(lex);
 				lex = strtok(NULL, " ");
 				if (lex == nullptr) {
-					stt->doEmitionRedFoundData("Restore file is corrupted.");
+                    stt->doEmitionRedFoundData("Restore file is corrupted.");
+                    fclose(resFile);
 					return;
 				}
 
 				if(gMode == 0)
 				{
-					if(strstr(lex, "-") != NULL)
+                    if(strchr(lex, '-') != NULL)
 					{
 						ui->ipLine->setText(QString(lex));
 
@@ -2250,7 +2252,7 @@ void RestoreSession()
 						ui->threadLine->setText(QString(lex));
 						ui->tabMainWidget->setCurrentIndex(0);
 					}
-					else if(strstr(lex, "/") != NULL)
+                    else if(strchr(lex, '/') != NULL)
 					{
 						ui->ipLine->setText(QString(lex));
 
@@ -2269,7 +2271,7 @@ void RestoreSession()
 					qLex.replace("[09]", "\\d");
 					ui->dnsLine->setText(qLex);
 					lex = strtok(NULL, " ");
-					if(strstr(lex, ".") != NULL) {
+                    if(strchr(lex, '.') != NULL) {
 						strcpy(gTLD, lex);
 						lex = strtok(NULL, " ");
 					}
@@ -2332,7 +2334,7 @@ void RestoreSession()
 			};
 
             if (strstr(resStr, "[SHUFFLE]:") != NULL) {
-				lex = strstr(resStr, "[SHUFFLE]:") + strlen("[SHUFFLE]:");
+                lex = strstr(resStr, "[SHUFFLE]:") + shufflePrefixLen;
 
 				if (strlen(lex) > 1)
 				{
@@ -2625,7 +2627,7 @@ void nesca::importAndScan()
 			ui->importButton->setText("Wait...");
 			stt->doEmitionBlockButton(true);
 			stt->doEmitionYellowFoundData("Trying to stop. Please, wait...");
-			importFileName = "";
+            importFileName.clear();
 		}
 		else
 		{
@@ -2646,9 +2648,9 @@ void nesca::importAndScan()
 
 void nesca::IPScanSeq()
 {
-	if (ui->ipLine->text() != "")
+    if (!ui->ipLine->text().isEmpty())
 	{
-		if (ui->ipmPortLine->text() != "")
+        if (!ui->ipmPortLine->text().isEmpty())
 		{
 			ui->ipLine->text().replace("http://", "");
 			ui->ipLine->text().replace("https://", "");
@@ -2744,7 +2746,7 @@ void nesca::ImportScanSeq()
 		);
 	else fileName = importFileName;
 
-	if (fileName != "")
+    if (!fileName.isEmpty())
 	{
 		stopFirst = false;
 		ui->tabMainWidget->setTabEnabled(0, false);
@@ -2846,17 +2848,17 @@ QRegExp boldr("((.+|(.+$)))");
 QRegExp colr("(\\d+[,\\d+]{0,2})");
 QString GetColorCode(int mode, QString str)
 {
-	QRegExp c("(\\d{0,2})");
-	QRegExp bg(",(\\d{0,2})");
 	QString col;
 
 	if(mode == 0)
 	{
+        QRegExp c("(\\d{0,2})");
 		c.indexIn(str);
 		col = c.cap(1);
 	}
 	else
 	{
+        QRegExp bg(",(\\d{0,2})");
 		bg.indexIn(str);
 		col = bg.cap(1);
 	};
@@ -3044,11 +3046,8 @@ void nesca::finishLoading() {
 //#define eicar5 "\"split\";e=eval;v=\"0x\";a=0;z=\"y\";try{a*=25}catch(zz){a=1}if(!a){try{--e(\"doc\"+\"ument\")[\"\x62od\"+z]}catch(q){}"
 
 
-nesca::nesca(bool isWM, QWidget *parent = 0) : QMainWindow(parent)
+nesca::nesca(QWidget *parent = 0) : QMainWindow(parent)
 {
-	/*if (isWM) {
-		Utils::emitScaryError();
-	}*/
 	setWindowFlags(Qt::FramelessWindowHint);
 
 	gthis = this;
@@ -3116,9 +3115,6 @@ nesca::nesca(bool isWM, QWidget *parent = 0) : QMainWindow(parent)
 	ui->BATableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 	/*bool DONOTSCAN = true;
-	if (isWM) {
-		Utils::emitScaryError();
-	}
 	if (!DONOTSCAN)
 	{
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
@@ -3220,7 +3216,7 @@ void nesca::STTTerminate()
 {
 	globalScanFlag = false;
 	startFlag = false;
-	importFileName = "";
+    importFileName.clear();
 	ui->tabMainWidget->setTabEnabled(0, true);
 	ui->tabMainWidget->setTabEnabled(1, true);
 	ui->tabMainWidget->setTabEnabled(2, true);

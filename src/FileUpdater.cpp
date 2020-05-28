@@ -47,12 +47,11 @@ void updateLogin() {
 
     MaxLogin = 0;
 
-    char buffFG[32] = {0};
-
     FILE *loginList = fopen(LOGIN_FN, "r");
 
     if(loginList != NULL)
     {
+        char buffFG[32] = {0};
         while(fgets(buffFG, 32, loginList) != NULL)
         {
             MaxLogin++;
@@ -73,7 +72,7 @@ void updateLogin() {
         {
             memset(loginLst[i], 0, strlen(buffFG) + 1);
 
-            if(strstr(buffFG, "\n") != NULL) strncat(loginLst[i++], buffFG, strlen(buffFG) - 1);
+            if(strchr(buffFG, '\n') != NULL) strncat(loginLst[i++], buffFG, strlen(buffFG) - 1);
             else strncat(loginLst[i++], buffFG, strlen(buffFG));
             ZeroMemory(buffFG, sizeof(buffFG));
         };
@@ -100,12 +99,11 @@ void updatePass() {
 
     MaxPass = 0;
 
-    char buffFG[32] = {0};
-
     FILE *passList = fopen(PASS_FN, "r");
 
     if(passList != NULL)
     {
+        char buffFG[32] = {0};
         while(fgets(buffFG, 32, passList) != NULL)
         {
             MaxPass++;
@@ -126,7 +124,7 @@ void updatePass() {
         {
             memset(passLst[i], 0, strlen(buffFG) + 1);
 
-            if(strstr(buffFG, "\n") != NULL) strncat(passLst[i++], buffFG, strlen(buffFG) - 1);
+            if(strchr(buffFG, '\n') != NULL) strncat(passLst[i++], buffFG, strlen(buffFG) - 1);
             else  strncat(passLst[i++], buffFG, strlen(buffFG));
             ZeroMemory(buffFG, sizeof(buffFG));
         };
@@ -153,12 +151,12 @@ void updateSSH() {
 
     MaxSSHPass = 0;
 
-    char buffFG[32] = {0};
 
 	FILE *sshlpList = fopen(SSH_PASS_FN, "r");
 
     if(sshlpList != NULL)
     {
+        char buffFG[32] = {0};
         while(fgets(buffFG, 32, sshlpList) != NULL)
         {
             ++MaxSSHPass;
@@ -180,7 +178,7 @@ void updateSSH() {
         {
             memset(sshlpLst[i], 0, strlen(buffFG) + 1);
 
-            if(strstr(buffFG, "\n") != NULL) strncat(sshlpLst[i++], buffFG, strlen(buffFG) - 1);
+            if(strchr(buffFG, '\n') != NULL) strncat(sshlpLst[i++], buffFG, strlen(buffFG) - 1);
 			else strncat(sshlpLst[i++], buffFG, strlen(buffFG));
 			ZeroMemory(buffFG, sizeof(buffFG));
         };
@@ -207,12 +205,11 @@ void updateWFLogin() {
 
     MaxWFLogin = 0;
 
-    char buffFG[32] = {0};
-
     FILE *wfLoginList = fopen(WF_LOGIN_FN, "r");
 
     if(wfLoginList != NULL)
     {
+        char buffFG[32] = {0};
         while(fgets(buffFG, 32, wfLoginList) != NULL)
         {
 			MaxWFLogin++;
@@ -233,7 +230,7 @@ void updateWFLogin() {
         {
             memset(wfLoginLst[i], 0, strlen(buffFG) + 1);
 
-            if(strstr(buffFG, "\n") != NULL) strncat(wfLoginLst[i++], buffFG, strlen(buffFG) - 1);
+            if(strchr(buffFG, '\n') != NULL) strncat(wfLoginLst[i++], buffFG, strlen(buffFG) - 1);
 			else strncat(wfLoginLst[i++], buffFG, strlen(buffFG));
 			ZeroMemory(buffFG, sizeof(buffFG));
         };
@@ -255,12 +252,11 @@ void updateWFPass() {
 
     MaxWFPass = 0;
 
-    char buffFG[32] = {0};
-
 	FILE *wfPassList = fopen(WF_PASS_FN, "r");
 
     if(wfPassList != NULL)
     {
+        char buffFG[32] = {0};
         while(fgets(buffFG, 32, wfPassList) != NULL)
         {
 			MaxWFPass++;
@@ -281,7 +277,7 @@ void updateWFPass() {
         {
             memset(wfPassLst[i], 0, strlen(buffFG) + 1);
 
-            if(strstr(buffFG, "\n") != NULL) strncat(wfPassLst[i++], buffFG, strlen(buffFG) - 1);
+            if(strchr(buffFG, '\n') != NULL) strncat(wfPassLst[i++], buffFG, strlen(buffFG) - 1);
 			else strncat(wfPassLst[i++], buffFG, strlen(buffFG));
 			ZeroMemory(buffFG, sizeof(buffFG));
         };
@@ -303,12 +299,12 @@ void updateFTPLogin() {
 
 	MaxFTPLogin = 0;
 
-	char buffFG[32] = { 0 };
 
 	FILE *ftpLoginList = fopen(FTP_LOGIN_FN, "r");
 
 	if (ftpLoginList != NULL)
 	{
+        char buffFG[32] = { 0 };
 		while (fgets(buffFG, 32, ftpLoginList) != NULL)
 		{
 			MaxFTPLogin++;
@@ -329,7 +325,7 @@ void updateFTPLogin() {
 		{
 			memset(ftpLoginLst[i], 0, strlen(buffFG) + 1);
 
-			if (strstr(buffFG, "\n") != NULL) strncat(ftpLoginLst[i++], buffFG, strlen(buffFG) - 1);
+            if (strchr(buffFG, '\n') != NULL) strncat(ftpLoginLst[i++], buffFG, strlen(buffFG) - 1);
 			else strncat(ftpLoginLst[i++], buffFG, strlen(buffFG));
 			ZeroMemory(buffFG, sizeof(buffFG));
 		};
@@ -351,12 +347,12 @@ void updateFTPPass() {
 
 	MaxFTPPass = 0;
 
-	char buffFG[32] = { 0 };
 
 	FILE *ftpPassList = fopen(FTP_PASS_FN, "r");
 
 	if (ftpPassList != NULL)
 	{
+        char buffFG[32] = { 0 };
 		while (fgets(buffFG, 32, ftpPassList) != NULL)
 		{
 			++MaxFTPPass;
@@ -377,7 +373,7 @@ void updateFTPPass() {
 		{
 			memset(ftpPassLst[i], 0, strlen(buffFG) + 1);
 
-			if (strstr(buffFG, "\n") != NULL) strncat(ftpPassLst[i++], buffFG, strlen(buffFG) - 1);
+            if (strchr(buffFG, '\n') != NULL) strncat(ftpPassLst[i++], buffFG, strlen(buffFG) - 1);
 			else strncat(ftpPassLst[i++], buffFG, strlen(buffFG));
 			ZeroMemory(buffFG, sizeof(buffFG));
 		};

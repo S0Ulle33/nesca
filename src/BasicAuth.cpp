@@ -64,7 +64,7 @@ void setNewIP(const char *ipOrig, char *ip, std::string *buff, int size) {
             strncpy(ip, location.c_str(), size);
         }
         else {
-            size_t ipLength = (strstr(ipOrig + 8, "/")-ipOrig);
+            size_t ipLength = (strchr(ipOrig + 8, '/')-ipOrig);
             if (ipLength) {
                 strncpy(ip, ipOrig, ipLength);
                 strncat(ip, location.c_str(), size - ipLength);

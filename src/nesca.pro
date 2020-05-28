@@ -2,7 +2,7 @@ QT += core gui multimedia widgets
 
 CONFIG += c++11
 QMAKE_CFLAGS += -Wno-write-strings 
-QMAKE_CXXFLAGS += -Wno-write-strings -Wno-narrowing -fpermissive
+QMAKE_CXXFLAGS += -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wunused -Wno-write-strings -Wno-narrowing -fpermissive
 
 TARGET = nesca
 RC_ICONS = nesca.ico
