@@ -111,3 +111,7 @@ win32: LIBS += -L$$PWD/3rdparty/zlib_x86-windows/lib/ -lzlib
 
 INCLUDEPATH += $$PWD/3rdparty/zlib_x86-windows/include
 DEPENDPATH += $$PWD/3rdparty/zlib_x86-windows/include
+
+unix: LIBS += -lssh
+unix: LIBS += -lcrypto
+unix: LIBS += -lcurl
