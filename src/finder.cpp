@@ -119,7 +119,7 @@ std::string getCodePage(const char *str)
 {
     std::string searchString(str);
     std::regex httpRe("HTTP.*(\\d{3})");
-    std::regex re("(\\d{3})");
+    std::regex re("(\d{3})");
     std::smatch matches;
 
     if(std::regex_search(searchString, matches, httpRe)) {
