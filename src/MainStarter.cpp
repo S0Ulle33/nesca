@@ -983,22 +983,11 @@ void MainStarter::createResultFiles() {
 	sprintf(fileName, "./" DIR_NAME "%s_%s", Utils::getStartDate().c_str(), Utils::getCurrentTarget().c_str());
     QDir myDir("");
     bool res = myDir.mkpath(fileName);
-	if (!res) {
-		int err = GetLastError();
-		if (err != 183)
-		{
-			while (!res) {
-				stt->doEmitionRedFoundData("Failed to create \"" + QString::fromLocal8Bit(fileName) + "\" Err: " + QString::number(err));
-                bool res = myDir.mkpath(fileName);
-				err = GetLastError();
-				Sleep(1000);
-			}
-		} else {
-			stt->doEmitionYellowFoundData("Directory \"" + QString::fromLocal8Bit(fileName) + "\" already exists. Err: " + QString::number(err));
-		}
-	} else {
-		stt->doEmitionGreenFoundData("Result directory \"" + QString::fromLocal8Bit(fileName) + "\" successfully created.");
-	}
+    if (res) {
+        stt->doEmitionGreenFoundData("Result directory \"" + QString::fromLocal8Bit(fileName) + "\" successfully created.");
+    } else {
+        stt->doEmitionRedFoundData("Failed to create \"" + QString::fromLocal8Bit(fileName));
+    }
 }
 
 /* This array will store all of the mutexes available to OpenSSL. */
