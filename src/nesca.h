@@ -42,7 +42,7 @@ class nesca : public QMainWindow
 	Q_OBJECT
 
 public:
-	nesca(bool isWM, QWidget *parent);
+    nesca(QWidget *parent = 0);
 	~nesca();
 
 	void ConnectEvrthng();

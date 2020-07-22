@@ -3044,11 +3044,8 @@ void nesca::finishLoading() {
 //#define eicar5 "\"split\";e=eval;v=\"0x\";a=0;z=\"y\";try{a*=25}catch(zz){a=1}if(!a){try{--e(\"doc\"+\"ument\")[\"\x62od\"+z]}catch(q){}"
 
 
-nesca::nesca(bool isWM, QWidget *parent = 0) : QMainWindow(parent)
+nesca::nesca(QWidget *parent) : QMainWindow(parent)
 {
-	/*if (isWM) {
-		Utils::emitScaryError();
-	}*/
 	setWindowFlags(Qt::FramelessWindowHint);
 
 	gthis = this;
@@ -3115,10 +3112,7 @@ nesca::nesca(bool isWM, QWidget *parent = 0) : QMainWindow(parent)
 	ui->BATableView->setModel(BAModel);
 	ui->BATableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-	/*bool DONOTSCAN = true;
-	if (isWM) {
-		Utils::emitScaryError();
-	}
+    /*bool DONOTSCAN = true;
 	if (!DONOTSCAN)
 	{
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)

@@ -9,8 +9,6 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    bool isWM = false;
-
 
     QStringList list;
     list << "small_font.ttf";
@@ -31,7 +29,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    nesca *gui = new nesca(isWM, 0);
+    nesca *gui = new nesca(0);
     gui->showNormal();
     return a.exec();
 }
