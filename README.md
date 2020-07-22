@@ -64,14 +64,6 @@ make
 
 ### Docker
 
-Можно сбилдить с помощью контейнера на основе Ubuntu 14.04, достаточно одной команды в директории с репозиторием:
-
-```
-docker build .
-```
-
-Для запуска Nesca прямо из контейнера выполнить:
-
-```
-docker run -i -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix <IMAGE ID>
-```
+1. `git clone --branch dev https://github.com/S0Ulle33/nesca.git`
+2. `cd nesca/ && docker build -t nesca .`
+3. `docker run -i -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nesca`
