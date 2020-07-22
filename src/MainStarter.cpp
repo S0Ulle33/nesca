@@ -991,7 +991,7 @@ void MainStarter::createResultFiles() {
 }
 
 /* This array will store all of the mutexes available to OpenSSL. */
-static MUTEX_TYPE *mutex_buf = NULL;
+/*static MUTEX_TYPE *mutex_buf = NULL;
 
 static void locking_function(int mode, int n, const char * file, int line)
 {
@@ -1006,7 +1006,7 @@ static unsigned long id_function(void)
 	return ((unsigned long)THREAD_ID);
 }
 
-int thread_setup(void)
+*int thread_setup(void)
 {
 	int i;
 
@@ -1032,7 +1032,7 @@ int thread_cleanup(void)
 	free(mutex_buf);
 	mutex_buf = NULL;
 	return 1;
-}
+}*/
 
 void MainStarter::start(const char* targets, const char* ports) {
 	std::srand(std::time(NULL));
@@ -1046,7 +1046,7 @@ void MainStarter::start(const char* targets, const char* ports) {
 	saveBackup = true;
 	curl_global_init(CURL_GLOBAL_ALL);
 	
-	thread_setup();
+    //thread_setup();
 
 
 	QString fileSuffix = QString(targets);
@@ -1073,7 +1073,7 @@ void MainStarter::start(const char* targets, const char* ports) {
 	MainStarter::saveBK();
 	saveBackup = false;
 	
-	thread_cleanup();
+    //thread_cleanup();
 
 	stt->doEmitionGreenFoundData("Done. Saved <u>" + QString::number(saved) + 
 		"</u> of <u>" + QString::number(found) + "</u> nodes.");
