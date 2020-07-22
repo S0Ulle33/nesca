@@ -55,7 +55,7 @@ RUN mkdir -p /tmp/qt \
 RUN apt-get -qq install -y --no-install-recommends qtmultimedia5-dev
 
 # Download Nesca
-RUN cd /tmp && git clone https://github.com/netstalking-core/nesca.git
+RUN cd /tmp && git clone https://github.com/S0Ulle33/nesca.git
 
 # Compile
 RUN cd /tmp/nesca && qmake && make
