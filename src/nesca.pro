@@ -79,39 +79,36 @@ RESOURCES += \
 
 OTHER_FILES +=
 
-win32: LIBS += -lws2_32
+unix {
+    LIBS += -lssh
+    LIBS += -lcrypto
+    LIBS += -lcurl
+}
 
+win32 {
+    LIBS += -lws2_32
 
-win32: LIBS += -L$$PWD/3rdparty/curl_x86-windows/lib/ -llibcurl_imp
+    LIBS += -L$$PWD/3rdparty/curl_x86-windows/lib/ -llibcurl_imp
+    INCLUDEPATH += $$PWD/3rdparty/curl_x86-windows/include
+    DEPENDPATH += $$PWD/3rdparty/curl_x86-windows/include
 
-INCLUDEPATH += $$PWD/3rdparty/curl_x86-windows/include
-DEPENDPATH += $$PWD/3rdparty/curl_x86-windows/include
+    LIBS += -L$$PWD/3rdparty/hikvision/lib/ -lHCNetSDK
+    INCLUDEPATH += $$PWD/3rdparty/hikvision/include
+    DEPENDPATH += $$PWD/3rdparty/hikvision/include
 
-win32: LIBS += -L$$PWD/3rdparty/hikvision/lib/ -lHCNetSDK
+    LIBS += -L$$PWD/3rdparty/libssh_x86-windows/lib/ -lssh
+    INCLUDEPATH += $$PWD/3rdparty/libssh_x86-windows/include
+    DEPENDPATH += $$PWD/3rdparty/libssh_x86-windows/include
 
-INCLUDEPATH += $$PWD/3rdparty/hikvision/include
-DEPENDPATH += $$PWD/3rdparty/hikvision/include
+    LIBS += -L$$PWD/3rdparty/openssl-windows_x86-windows/lib/ -llibeay32
+    INCLUDEPATH += $$PWD/3rdparty/openssl-windows_x86-windows/include
+    DEPENDPATH += $$PWD/3rdparty/openssl-windows_x86-windows/include
 
-win32: LIBS += -L$$PWD/3rdparty/libssh_x86-windows/lib/ -lssh
+    LIBS += -L$$PWD/3rdparty/openssl-windows_x86-windows/lib/ -lssleay32
+    INCLUDEPATH += $$PWD/3rdparty/openssl-windows_x86-windows/include
+    DEPENDPATH += $$PWD/3rdparty/openssl-windows_x86-windows/include
 
-INCLUDEPATH += $$PWD/3rdparty/libssh_x86-windows/include
-DEPENDPATH += $$PWD/3rdparty/libssh_x86-windows/include
-
-win32: LIBS += -L$$PWD/3rdparty/openssl-windows_x86-windows/lib/ -llibeay32
-
-INCLUDEPATH += $$PWD/3rdparty/openssl-windows_x86-windows/include
-DEPENDPATH += $$PWD/3rdparty/openssl-windows_x86-windows/include
-
-win32: LIBS += -L$$PWD/3rdparty/openssl-windows_x86-windows/lib/ -lssleay32
-
-INCLUDEPATH += $$PWD/3rdparty/openssl-windows_x86-windows/include
-DEPENDPATH += $$PWD/3rdparty/openssl-windows_x86-windows/include
-
-win32: LIBS += -L$$PWD/3rdparty/zlib_x86-windows/lib/ -lzlib
-
-INCLUDEPATH += $$PWD/3rdparty/zlib_x86-windows/include
-DEPENDPATH += $$PWD/3rdparty/zlib_x86-windows/include
-
-unix: LIBS += -lssh
-unix: LIBS += -lcrypto
-unix: LIBS += -lcurl
+    LIBS += -L$$PWD/3rdparty/zlib_x86-windows/lib/ -lzlib
+    INCLUDEPATH += $$PWD/3rdparty/zlib_x86-windows/include
+    DEPENDPATH += $$PWD/3rdparty/zlib_x86-windows/include
+}
