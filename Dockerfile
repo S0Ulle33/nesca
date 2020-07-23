@@ -27,5 +27,5 @@ ADD ./src/ /home/nesca/
 # Compile
 RUN cd /home/nesca/ && qmake && make
 
-ENV QT_DEBUG_PLUGINS=1
+ENV QT_QPA_PLATFORM=minimal
 ENTRYPOINT ["/home/nesca/nesca"]
