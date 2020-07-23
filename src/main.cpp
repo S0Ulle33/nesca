@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    nesca *gui = new nesca(0);
+    nesca *gui = new nesca();
     gui->showNormal();
     return a.exec();
 }
